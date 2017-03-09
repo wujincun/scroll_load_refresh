@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>scroll_load_refresh</title>
+    <style>
+        .list-wrapper {
+
+        }
+        .list-item{
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<ul class="list-wrapper">
+    <li class="list-item">5</li>
+    <li class="list-item">5</li>
+    <li class="list-item">5</li>
+    <li class="list-item">5</li>
+    <li class="list-item">5</li>
+    <li class="list-item">5</li>
+    <li class="list-item">5</li>
+    <li class="list-item">5</li>
+    <li class="list-item">5</li>
+    <li class="list-item">5</li>
+</ul>
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var p = 0, t = 0,winH = $(window).height();
+        var $listWrapper = $('.list-wrapper');
+        $(window).scroll(function (e) {
+            p = $(this).scrollTop();
+            if (t <= p) { //上滚
+                if ($listWrapper.outerHeight(true) <= p+winH){
+                    $('<li class="list-item">6</li>').appendTo($listWrapper)
+                }
+            }
+            else {//下滚
+                if(p<=0){
+                    alert("down")
+                }
+            }
+            setTimeout(function () {
+                t = p;
+            }, 0);
+        });
+    });
+
+
+</script>
+</body>
+</html>
